@@ -1,6 +1,8 @@
 ziggy-substitute
 ====
 
+[![Build Status](https://travis-ci.org/jarofghosts/ziggy-substitute.svg?branch=master)](https://travis-ci.org/jarofghosts/ziggy-substitute)
+
 use ziggy to fix your typos
 
 ## usage
