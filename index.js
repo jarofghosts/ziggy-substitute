@@ -1,6 +1,6 @@
 var esc = require('quotemeta')
 
-var sub_rex = /^s\/(.*?)\/(.*?)/
+var sub_rex = /^s\/(.*?)\/(.*?)\/?$/
 
 module.exports = substitute
 
@@ -10,7 +10,7 @@ function substitute(ziggy) {
   ziggy.on('message', parse_message)
 
   function parse_message(user, channel, text) {
-    if(is_sub.test(text)) return do_substitution()
+    if(sub_rex.test(text)) return do_substitution()
 
     if(!messages[channel]) messages[channel] = {}
     messages[channel][user.nick] = text
@@ -20,13 +20,13 @@ function substitute(ziggy) {
 
       if(!previous) return
 
-      var parts = previous.match(sub_rex)
+      var parts = text.match(sub_rex)
 
-      var fix_rex = new RegExp(esc(parts[0]), 'g')
+      var fix_rex = new RegExp(esc(parts[1]), 'g')
 
       ziggy.say(
           channel
-        , user.nick + ' meant "' + previous.replace(fix_rex, parts[1]) + '"'
+        , user.nick + ' meant "' + previous.replace(fix_rex, parts[2]) + '"'
       )
     }
   }
