@@ -1,0 +1,30 @@
+{
+  "name": "ziggy-substitute",
+  "version": "0.0.0",
+  "description": "text substitution plugin for ziggy irc bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jarofghosts/ziggy-substitute.git"
+  },
+  "keywords": [
+    "ziggy",
+    "substitution",
+    "plugin"
+  ],
+  "author": "jesse keane <me@jessekeane.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jarofghosts/ziggy-substitute/issues"
+  },
+  "homepage": "https://github.com/jarofghosts/ziggy-substitute",
+  "devDependencies": {
+    "tape": "^2.12.3"
+  },
+  "dependencies": {
+    "quotemeta": "0.0.0"
+  }
+}
