@@ -2,6 +2,9 @@ var esc = require('quotemeta')
 
 var sub_rex = /^s\/(.*?)\/(.*?)\/?$/
 
+substitute.help = 'use "s/old string/new string/" to replace `old string` in' +
+    ' your previous message with `new string`'
+
 module.exports = substitute
 
 function substitute(ziggy) {
