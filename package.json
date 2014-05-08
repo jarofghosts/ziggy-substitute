@@ -4,7 +4,7 @@
   "description": "text substitution plugin for ziggy irc bot",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/*.js"
+    "test": "tape test/index.js"
   },
   "repository": {
     "type": "git",
