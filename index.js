@@ -31,6 +31,8 @@ function substitute(ziggy) {
       var fix_rex = new RegExp(esc(parts[1]), (parts[3] || '')
           .replace(/[^ig]/, ''))
 
+      if(!fix_rex.test(previous)) return
+
       ziggy.say(
           channel
         , user.nick + ' meant "' + previous.replace(fix_rex, parts[2]) + '"'
