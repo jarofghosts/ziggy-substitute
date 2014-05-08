@@ -39,3 +39,21 @@ test('does the right thing with special characters', function(t) {
     t.equal(channel, 'herp', 'says to channel')
   }
 })
+
+test('can specify modifiers', function(t) {
+  t.plan(2)
+
+  var ziggy = new EE()
+
+  ziggy.say = check_output
+
+  plugin(ziggy)
+
+  ziggy.emit('message', {nick: 'derp'}, 'herp', 'WHAA whaa')
+  ziggy.emit('message', {nick: 'derp'}, 'herp', 's/wha/who/igl')
+
+  function check_output(channel, text) {
+    t.equal(text, 'derp meant "whoA whoa"', 'subs characters')
+    t.equal(channel, 'herp', 'says to channel')
+  }
+})
