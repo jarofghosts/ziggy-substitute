@@ -1,7 +1,7 @@
 var safe = require('safe-regex')
   , esc = require('quotemeta')
 
-var sub_rex = /^s\/(.*?)\/(.*?)\/?(\w+)?$/
+var sub_rex = /^s\/(.*?)\/([^\/]+)(.*?)$/
 
 substitute.help = 'use "s/old string/new string/" to replace `old string` in' +
     ' your previous message with `new string`'
@@ -29,7 +29,7 @@ function substitute(ziggy) {
       if(!safe(esc(parts[1]))) return
 
       var fix_rex = new RegExp(esc(parts[1]), (parts[3] || '')
-          .replace(/[^ig]/, ''))
+          .replace(/[^ig]/g, ''))
 
       if(!fix_rex.test(previous)) return
 

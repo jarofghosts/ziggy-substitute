@@ -22,6 +22,24 @@ test('substitutes words correctly', function(t) {
   }
 })
 
+test('trailing slash is optional', function(t) {
+  t.plan(2)
+
+  var ziggy = new EE()
+
+  ziggy.say = check_output
+
+  plugin(ziggy)
+
+  ziggy.emit('message', {nick: 'derp'}, 'herp', 'there\'s two things')
+  ziggy.emit('message', {nick: 'derp'}, 'herp', 's/two/three')
+
+  function check_output(channel, text) {
+    t.equal(text, 'derp meant "there\'s three things"', 'subs characters')
+    t.equal(channel, 'herp', 'says to channel')
+  }
+})
+
 test('does the right thing with special characters', function(t) {
   t.plan(2)
 
