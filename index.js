@@ -28,8 +28,10 @@ function substitute(ziggy) {
 
       if(!safe(esc(parts[1]))) return
 
-      var fix_rex = new RegExp(esc(parts[1]), (parts[3] || '')
-          .replace(/[^ig]/g, ''))
+      var fix_rex = new RegExp(
+          esc(parts[1])
+        , dedupe((parts[3] || '').replace(/[^ig]/g, ''))
+      )
 
       if(!fix_rex.test(previous)) return
 
@@ -39,4 +41,15 @@ function substitute(ziggy) {
       )
     }
   }
+}
+
+function dedupe(_str) {
+  var str = _str.split('')
+    , result = ''
+
+  for(var i = 0, l = str.length; i < l; ++i) {
+    if(result.indexOf(str[i]) === -1) result += str[i]
+  }
+
+  return result
 }
