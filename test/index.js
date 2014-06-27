@@ -22,6 +22,24 @@ test('substitutes words correctly', function(t) {
   }
 })
 
+test('replacement string is optional', function(t) {
+  t.plan(2)
+
+  var ziggy = new EE()
+
+  ziggy.say = check_output
+
+  plugin(ziggy)
+
+  ziggy.emit('message', {nick: 'derp'}, 'herp', 'I am pretty ugly')
+  ziggy.emit('message', {nick: 'derp'}, 'herp', 's/ ugly//')
+
+  function check_output(channel, text) {
+    t.equal(text, 'derp meant "I am pretty"', 'subs characters')
+    t.equal(channel, 'herp', 'says to channel')
+  }
+})
+
 test('trailing slash is optional', function(t) {
   t.plan(2)
 
